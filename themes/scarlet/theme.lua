@@ -12,7 +12,7 @@ local theme = require("themes/colored/theme")
 -----------------------------------------------------------------------------------------------------------------------
 theme.color.main   = "#A30817"
 theme.color.urgent = "#016B84"
-
+theme.color.desktop_gray = "#707070"
 
 -- Common
 -----------------------------------------------------------------------------------------------------------------------
@@ -35,24 +35,35 @@ theme:update()
 
 -- Desktop widgets placement
 --------------------------------------------------------------------------------
-theme.desktop.grid = {
+--[[theme.desktop.grid = {
 	width  = { 440, 440 },
 	height = { 100, 100, 100, 66, 50 },
-	edge   = { width = { 100, 840 }, height = { 100, 100 } }
+	edge   = { width = { 1180, 1180 }, height = { 520, 100 } }
 }
 
 theme.desktop.places = {
-	netspeed = { 2, 1 },
-	ssdspeed = { 2, 2 },
-	hddspeed = { 2, 3 },
 	cpumem   = { 1, 1 },
-	transm   = { 1, 2 },
-	disks    = { 1, 3 },
-	thermal1 = { 1, 4 },
-	thermal2 = { 2, 4 },
-	fan      = { 2, 5 },
-	vnstat   = { 1, 5 },
+  thermal  = { 1, 2 },
+  fan      = { 1, 3 },
+  netspeed = { 2, 1 },
+  ssdspeed = { 2, 2 },
+	disks    = { 2, 3 },
+}]]--
+theme.desktop.grid = {
+	width  = { 440 },
+	height = { 100, 100, 100, 100, 100 },
+	edge   = { width = { 50 }, height = { 100, 100, 100, 100, 100 } }
 }
+
+theme.desktop.places = {
+	cpumem   = { 1, 1 },
+  thermal  = { 1, 2 },
+  fan      = { 1, 3 },
+  netspeed = { 1, 4 },
+  ssdspeed = { 1, 5 },
+	disks    = { 1, 6 }
+}
+
 
 -- Desktop widgets
 --------------------------------------------------------------------------------
@@ -95,7 +106,7 @@ theme.individual.desktop.speedmeter.drive = {
 -- Multimeter (base widget)
 theme.desktop.multimeter.upbar          = { width = 32, chunk = { num = 8, line = 4 }, shape = "plain" }
 theme.desktop.multimeter.lines.show     = { label = false, tooltip = true, text = false }
-theme.desktop.multimeter.icon.full      = false
+theme.desktop.multimeter.icon.full      = true 
 theme.desktop.multimeter.icon.margin    = { 0, 8, 0, 0 }
 theme.desktop.multimeter.height.upright = 66
 theme.desktop.multimeter.height.lines   = 20
@@ -117,13 +128,14 @@ theme.individual.desktop.multimeter.transmission = {
 -- Multilines (base widget)
 theme.desktop.multiline.lines.show     = { label = false, tooltip = true, text = false }
 theme.desktop.multiline.icon.margin    = theme.desktop.multimeter.icon.margin
+theme.desktop.multiline.icon.full      = true
 
 -- Multilines storage (individual widget)
 theme.individual.desktop.multiline.storage = {
-	unit      = { { "KB", 1 }, { "MB", 1024^1 }, { "GB", 1024^2 } },
+	unit      = { { "KB", 1 }, { "MB", 1024^1 }, { "GB", 1024^2 }, { "TB", 1024^3 } },
 	icon      = { image = theme.path .. "/desktop/storage.svg" },
 	lines     = {
-		line        = { height = 10 },
+		line        = { height = 25 },
 		progressbar = { chunk = { gap = 6, width = 4 } },
 	},
 }
@@ -183,27 +195,17 @@ theme.widget.wrapper = {
 	layoutbox   = { 12, 9, 6, 6 },
 	textclock   = { 10, 10, 0, 0 },
 	volume      = { 4, 9, 3, 3 },
-	microphone  = { 5, 6, 6, 6 },
 	keyboard    = { 9, 9, 3, 3 },
-	mail        = { 9, 9, 3, 3 },
 	tray        = { 8, 8, 7, 7 },
 	cpu         = { 9, 3, 7, 7 },
 	ram         = { 2, 2, 7, 7 },
-	battery     = { 3, 9, 7, 7 },
 	network     = { 4, 4, 7, 7 },
-	updates     = { 6, 6, 6, 6 },
 	taglist     = { 4, 4, 5, 4 },
 	tasklist    = { 10, 0, 0, 0 }, -- centering tasklist widget
 }
 
 -- Various widgets style tuning
 ------------------------------------------------------------
-
--- Dotcount
---theme.gauge.graph.dots.dot_gap_h = 5
-
--- System updates indicator
-theme.widget.updates.icon = theme.path .. "/widget/updates.svg"
 
 -- Audio
 theme.gauge.audio.blue.dash.plain = true
@@ -213,9 +215,6 @@ theme.gauge.audio.blue.dmargin = { 5, 0, 9, 9 }
 theme.gauge.audio.blue.width = 86
 theme.gauge.audio.blue.icon = theme.path .. "/widget/audio.svg"
 
--- Dash
-theme.gauge.monitor.dash.width = 11
-
 -- Tasklist
 theme.widget.tasklist.char_digit = 5
 theme.widget.tasklist.task = theme.gauge.task.ruby
@@ -224,12 +223,6 @@ theme.widget.tasklist.tasktip.max_width = 1200
 -- KB layout indicator
 theme.widget.keyboard.icon = theme.path .. "/widget/keyboard.svg"
 
--- Mail
-theme.widget.mail.icon = theme.path .. "/widget/mail.svg"
-
--- Battery
-theme.widget.battery.notify = { icon = theme.path .. "/widget/battery.svg", color = theme.color.main }
-theme.widget.battery.levels = { 0.05, 0.1, 0.15, 0.2, 0.25, 0.30 }
 
 -- Individual styles
 ------------------------------------------------------------

@@ -703,6 +703,7 @@ function theme:init()
 		usermap           = "User Map",
 		tile              = "Right Tile",
 		fairv             = "Fair Tile",
+    fairh             = "Fair Horizontal Tile",
 		tileleft          = "Left Tile",
 		tiletop           = "Top Tile",
 		tilebottom        = "Bottom Tile",

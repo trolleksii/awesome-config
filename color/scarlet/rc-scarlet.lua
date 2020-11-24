@@ -17,6 +17,8 @@ require("awful.autofocus")
 ------------------------------------------------------------
 local redflat = require("redflat")
 
+local lock = lock or {}
+redflat.startup.locked = lock.autostart
 redflat.startup:activate()
 
 -- Error handling
@@ -27,7 +29,7 @@ require("colorless.ercheck-config") -- load file with error handling
 -- Setup theme and environment vars
 -----------------------------------------------------------------------------------------------------------------------
 local env = require("color.scarlet.env-config") -- load file with environment
-env:init({ theme = "scarlet", set_center = true })
+env:init({ theme = "scarlet", desktop_autohide = true, set_center = true })
 
 
 -- Layouts setup
@@ -79,6 +81,11 @@ taglist.buttons = awful.util.table.join(
 --------------------------------------------------------------------------------
 local textclock = {}
 textclock.widget = redflat.widget.textclock({ timeformat = "%H:%M", dateformat = "%b  %d  %a" })
+
+textclock.buttons = awful.util.table.join(
+	awful.button({}, 1, function() redflat.float.calendar:show() end)
+)
+
 
 -- Layoutbox configure
 --------------------------------------------------------------------------------
@@ -228,6 +235,17 @@ awful.screen.connect_for_each_screen(
 		}
 	end
 )
+
+
+-- Desktop widgets
+-----------------------------------------------------------------------------------------------------------------------
+if not lock.desktop then
+	local desktop = require("color.scarlet.desktop-config") -- load file with desktop widgets configuration
+	desktop:init({
+		env = env,
+		buttons = awful.util.table.join(awful.button({}, 3, function () mymenu.mainmenu:toggle() end))
+	})
+end
 
 
 -- Key bindings

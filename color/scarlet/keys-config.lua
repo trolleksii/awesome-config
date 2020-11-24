@@ -464,6 +464,9 @@ function hotkeys:init(args)
 			{ env.mod }, "F4", function(c) c:kill() end,
 			{ description = "Close", group = "Client keys" }
 		},
+    {
+      { env.mod, "Shift" }, "c", function(c) c:kill() end, { description = "Close client", group = "Client keys" }
+    },
 		{
 			{ env.mod, "Control" }, "f", awful.client.floating.toggle,
 			{ description = "Toggle floating", group = "Client keys" }

@@ -38,8 +38,8 @@ function desktop:init(args)
 	netspeed.args = {
 		meter_function = system.net_speed,
 		interface      = "wlp4s0",
-		maxspeed       = { up = 6*1024^2, down = 6*1024^2 },
-		crit           = { up = 6*1024^2, down = 6*1024^2 },
+		maxspeed       = { up = 45*1024^2, down = 45*1024^2 },
+		crit           = { up = 35*1024^2, down = 35*1024^2 },
 		timeout        = 2,
 		autoscale      = false,
 		label          = "NET"

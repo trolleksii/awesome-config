@@ -29,7 +29,7 @@ require("colorless.ercheck-config") -- load file with error handling
 -- Setup theme and environment vars
 -----------------------------------------------------------------------------------------------------------------------
 local env = require("color.scarlet.env-config") -- load file with environment
-env:init({ theme = "scarlet", desktop_autohide = true, set_center = true })
+env:init({ theme = "scarlet", desktop_autohide = false, set_center = true })
 
 
 -- Layouts setup

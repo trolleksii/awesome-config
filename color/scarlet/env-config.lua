@@ -30,7 +30,7 @@ function env:init(args)
 	self.fm = args.fm or "nemo"
 	self.home = os.getenv("HOME")
   self.browser = args.browser or "firefox"
-  self.player = args.player or "deadbeef"
+  self.player = args.player or "mpd"
 	self.themedir = awful.util.get_configuration_dir() .. "themes/" .. theme
 
 	-- boolean defaults is pain

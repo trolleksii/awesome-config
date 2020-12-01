@@ -113,7 +113,7 @@ function desktop:init(args)
 		wifi = { match = "iwlwifi_1%-virtual%-0\r?\nAdapter:%sVirtual%sdevice\r?\ntemp1:%s+%+(%d+)%.%d°[CF]" },
 		fan1 = { match = "fan1:%s+(%d+)%sRPM" },
 		fan2 = { match = "fan2:%s+(%d+)%sRPM" },
-    fan3 = { match = "fan5:%s+(%d+)%sRPM" }
+		fan3 = { match = "fan5:%s+(%d+)%sRPM" }
 	}
 
 	-- start auto async lmsensors check
@@ -131,7 +131,7 @@ function desktop:init(args)
 		sensors = {
 			{ meter_function = system.lmsensors.get, args = "cpu",  maxm = 100, crit = 75, name = "cpu"  },
 			{ meter_function = system.lmsensors.get, args = "wifi", maxm = 100, crit = 75, name = "wifi" },
-      { async_function = ssd_smart_check, maxm = 80, crit = 70, name = "ssd" },
+			{ async_function = ssd_smart_check, maxm = 80, crit = 70, name = "ssd" },
 			{ async_function = gpu_temp_check, maxm = 105, crit = 80, name = "gpu" }
 		},
 		timeout = sensors_base_timeout,
@@ -148,8 +148,8 @@ function desktop:init(args)
 		sensors = {
 			{ meter_function = system.lmsensors.get, args = "fan1", maxm = 5000, crit = 4000, name = "fan1" },
 			{ meter_function = system.lmsensors.get, args = "fan2", maxm = 5000, crit = 4000, name = "fan2" },
-      { meter_function = system.lmsensors.get, args = "fan3", maxm = 5000, crit = 4000, name = "fan3" },
-      { async_function = gpu_fan_check, maxm = 100, crit = 90, name = "gpu" }
+			{ meter_function = system.lmsensors.get, args = "fan3", maxm = 5000, crit = 4000, name = "fan3" },
+			{ async_function = gpu_fan_check, maxm = 100, crit = 90, name = "gpu" }
 		},
 		timeout = sensors_base_timeout,
 	}
@@ -172,7 +172,7 @@ function desktop:init(args)
 	netspeed.body = redflat.desktop.speedmeter.compact(netspeed.args, netspeed.style)
 	ssdspeed.body = redflat.desktop.speedmeter.compact(ssdspeed.args, ssdspeed.style)
 	cpumem.body   = redflat.desktop.multimeter(cpumem.args, cpumem.style)
-  transm.body   = redflat.desktop.multimeter(transm.args, transm.style)
+	transm.body   = redflat.desktop.multimeter(transm.args, transm.style)
 	disks.body    = redflat.desktop.multiline(disks.args, disks.style)
 	thermal_chips.body = redflat.desktop.multiline(thermal_chips.args, thermal_chips.style)
 	fan.body      = redflat.desktop.multiline(fan.args, fan.style)

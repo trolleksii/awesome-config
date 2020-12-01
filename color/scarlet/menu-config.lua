@@ -80,9 +80,9 @@ function menu:init(args)
 			{ "Places",        placesmenu,  micon("folder_home"), key = "c" },
 			separator,
 			{ "Terminal",      env.terminal, micon("terminal")              },
-      { "Browser",       env.browser,  micon("firefox")               },
-      { "Player",        env.player,   micon("deadbeef")              },
-      { "Ranger",        ranger_comm,  micon("folder"), key = "r"     },
+			{ "Browser",       env.browser,  micon("firefox")               },
+			{ "Player",        env.player,   micon("deadbeef")              },
+			{ "Ranger",        ranger_comm,  micon("folder"), key = "r"     },
 			separator,
 			{ "Exit",          exitmenu,     micon("exit")                  },
 		}

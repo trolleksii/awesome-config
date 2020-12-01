@@ -14,6 +14,7 @@ local autostart = {}
 function autostart.run()
 	awful.spawn.with_shell("picom -b --config /home/alex/.config/picom.conf")
   awful.spawn.with_shell("pamixer --get-volume")
+  awful.spawn.with_shell("sudo mount 192.168.0.7:/mnt/md0 /mnt")
 end
 
 -- Read and commands from file and spawn them

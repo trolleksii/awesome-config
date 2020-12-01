@@ -24,7 +24,7 @@ rules.floating_any = {
 	instance = { "DTA", "copyq", },
 	class = {
 		"Arandr", "Gpick", "Kruler", "MessageWin", "Sxiv", "Wpa_gui", "pinentry", "veromix",
-		"xtightvncviewer"
+		"xtightvncviewer", "Nemo", "Galculator" 
 	},
 	name = { "Event Tester", },
 	role = { "AlarmWindow", "pop-up", }
@@ -58,7 +58,7 @@ function rules:init(args)
     { rule = { class = "firefox" },
       properties = { tag = "Web", switchtotag = true } 
     },
-    { rule_any = { class = { "deadbeef", "vlc", "gpicview", "nemo" } },
+    { rule_any = { class = { "deadbeef", "vlc", "gpicview", "obs", "Shotcut" } },
       properties = { tag = "Media", switchtotag = true }
     },
 	}

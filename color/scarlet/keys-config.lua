@@ -240,15 +240,27 @@ function hotkeys:init(args)
 			{}, "p", function () toggle_placement(env) end,
 			{ description = "Switch master/slave window placement", group = "Clients managment" }
 		},
-
 		-- not last key in sequence, no description needed here
 		{ {}, "k", {}, {} }, -- application kill group
 		{ {}, "n", {}, {} }, -- application minimize group
 		{ {}, "r", {}, {} }, -- application restore group
+    { {}, "a", {}, {} }, -- audio player group
 
 		-- { {}, "g", {}, {} }, -- run or rise group
 		-- { {}, "f", {}, {} }, -- launch application group
 	}
+  --Player controls
+  keyseq[3][5][3] = {
+    {
+      {}, "n", function() redflat.float.player:action("Next") end, { description = "Play next", group = "Player Controls", keyset = { "n" } }
+    },
+    {
+      {}, "p", function() redflat.float.player:action("Previous") end, { description = "Play previous", group = "Player Controls", keyset = { "p" } }
+    },
+    {
+      {}, "l", function() redflat.float.player:action("PlayPause") end, { description = "Pause/Play", group = "Player Controls", keyset = { "l" } }
+    },
+  }  
 
 	-- application kill actions,
 	-- last key in sequence, full description and action is necessary
@@ -456,9 +468,26 @@ function hotkeys:init(args)
 			{ description = "Mute audio", group = "Volume control" }
 		},
 		{
-			{ "Control" }, "XF86AudioMute", function () microphone:mute() end,
+			{ "Control" }, "XF86AudioMute", function() microphone:mute() end,
 			{ description = "Mute microphone", group = "Volume control" }
 		},
+		{
+			{}, "XF86AudioPlay", function() redflat.float.player:action("PlayPause") end,
+			{ description = "Play/Pause track", group = "Audio player" }
+		},
+		{
+			{}, "XF86AudioNext", function() redflat.float.player:action("Next") end,
+			{ description = "Next track", group = "Audio player" }
+		},
+		{
+			{}, "XF86AudioPrev", function() redflat.float.player:action("Previous") end,
+			{ description = "Previous track", group = "Audio player" }
+		},
+		{
+			{ env.mod }, ".", function() redflat.float.player:show({x=screen[mouse.screen].workarea.width, y=0}) end,
+			{ description = "Show/hide widget", group = "Audio player" }
+		},
+	
 	}
 
 	-- Client keys
@@ -487,6 +516,19 @@ function hotkeys:init(args)
 			{ env.mod }, "n", function(c) c.minimized = true end,
 			{ description = "Minimize", group = "Client keys" }
 		},
+    {
+      { env.mod, "Control" }, "n", 
+      function() 
+        local c = awful.client.restore()
+        -- Focus restored client
+        if c then
+            c:emit_signal(
+              "request::activate", "key.unminimize", {raise = true}
+            )
+        end
+      end,
+      { description = "Restore minimized", group = "client" }
+    },
 		{
 			{ env.mod }, "m", function(c) c.maximized = not c.maximized; c:raise() end,
 			{ description = "Maximize", group = "Client keys" }

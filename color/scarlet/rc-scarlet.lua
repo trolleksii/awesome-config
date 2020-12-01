@@ -10,7 +10,6 @@
 local awful = require("awful")
 local wibox = require("wibox")
 local beautiful = require("beautiful")
-
 require("awful.autofocus")
 
 -- User modules
@@ -81,7 +80,7 @@ taglist.buttons = awful.util.table.join(
 --------------------------------------------------------------------------------
 local textclock = {}
 textclock.widget = redflat.widget.textclock({ timeformat = "%H:%M", dateformat = "%b  %d  %a" })
-
+--textclock.widget.wibox.x = 0
 textclock.buttons = awful.util.table.join(
 	awful.button({}, 1, function() redflat.float.calendar:show() end)
 )
@@ -178,7 +177,7 @@ awful.screen.connect_for_each_screen(
 		env.wallpaper(s)
 
 		-- tags
-		awful.tag({ "Dev", "Web", "Media" }, s, awful.layout.layouts[1])
+		awful.tag({ "Main", "Dev", "Web", "Media" }, s, awful.layout.layouts[1])
 
 		-- layoutbox widget
 		layoutbox[s] = redflat.widget.layoutbox({ screen = s })
@@ -198,6 +197,7 @@ awful.screen.connect_for_each_screen(
 			{ -- left widgets
 				layout = wibox.layout.fixed.horizontal,
 				env.wrapper(layoutbox[s], "layoutbox", layoutbox.buttons),
+        separator,
 				env.wrapper(taglist[s], "taglist"),
 				separator,
 				s.mypromptbox,
@@ -216,6 +216,7 @@ awful.screen.connect_for_each_screen(
 				env.wrapper(sysmon.widget.network, "network"),
 				separator,
         env.wrapper(sysmon.widget.cpu, "cpu", sysmon.buttons.cpu),
+        separator,
         env.wrapper(sysmon.widget.ram, "ram", sysmon.buttons.ram),
 				separator,
 				env.wrapper(volume.widget, "volume", volume.buttons),

@@ -74,6 +74,19 @@ function desktop:init(args)
 
 	cpumem.style = beautiful.individual.desktop.multimeter.cpumem
 
+  -- Transmission info
+	--------------------------------------------------------------------------------
+	local transm = { geometry = wgeometry(grid, places.transm, workarea) }
+
+	transm.args = {
+		topbars    = { num = 12, maxm = 100 },
+		lines      = { { maxm = 6*1024 }, { maxm = 6*1024 } },
+		meter      = { async = system.transmission.info, args = { speed_only = true } },
+		timeout    = 10,
+	}
+
+	transm.style = beautiful.individual.desktop.multimeter.transmission
+
 	-- Disks
 	--------------------------------------------------------------------------------
 	local disks = { geometry = wgeometry(grid, places.disks, workarea) }
@@ -83,7 +96,7 @@ function desktop:init(args)
 	disks.args = {
 		sensors  = {
 			{ meter_function = system.fs_info, maxm = 100, crit = 80, name = "root", args = "/"    },
-			{ meter_function = system.fs_info, maxm = 100, crit = 80, name = "nas", args  = "/mnt" },
+			{ meter_function = system.fs_info, maxm = 100, crit = 80, name = "nas", args  = "/mnt/" },
 		},
 		timeout = 300
 	}
@@ -141,7 +154,7 @@ function desktop:init(args)
 		timeout = sensors_base_timeout,
 	}
 	fan.style = beautiful.individual.desktop.multiline.fan
-
+  
 	-- Calendar
 	--------------------------------------------------------------------------------
 	local cwidth = 100 -- calendar widget width
@@ -159,6 +172,7 @@ function desktop:init(args)
 	netspeed.body = redflat.desktop.speedmeter.compact(netspeed.args, netspeed.style)
 	ssdspeed.body = redflat.desktop.speedmeter.compact(ssdspeed.args, ssdspeed.style)
 	cpumem.body   = redflat.desktop.multimeter(cpumem.args, cpumem.style)
+  transm.body   = redflat.desktop.multimeter(transm.args, transm.style)
 	disks.body    = redflat.desktop.multiline(disks.args, disks.style)
 	thermal_chips.body = redflat.desktop.multiline(thermal_chips.args, thermal_chips.style)
 	fan.body      = redflat.desktop.multiline(fan.args, fan.style)
@@ -168,7 +182,7 @@ function desktop:init(args)
 	--------------------------------------------------------------------------------
 	local desktop_objects = {
 		calendar, netspeed, ssdspeed, cpumem,
-		disks, fan, thermal_chips
+		disks, thermal_chips, fan, transm
 	}
 
 	if not autohide then

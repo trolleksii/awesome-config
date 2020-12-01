@@ -160,19 +160,6 @@ theme.individual.desktop.multiline.fan = {
 		unit      = { { "RPM", -1 }, { "R", 1 } },
 }
 
--- Multilines traffic (individual widget)
-theme.individual.desktop.multiline.vnstat = {
-		digits    = 3,
-		margin    = { 0, 0, 5, 5 },
-		icon      = { image = theme.path .. "/desktop/traffic.svg", margin = { 8, 16, 0, 0 } },
-		lines     = {
-			line        = { height = 13 },
-			progressbar = { chunk = { gap = 6, width = 4 } },
-			show        = { text = false, label = false, tooltip = true },
-		},
-		unit = { { "B", 1 }, { "KiB", 1024 }, { "MiB", 1024^2 }, { "GiB", 1024^3 } },
-}
-
 -- Panel widgets
 -----------------------------------------------------------------------------------------------------------------------
 
@@ -210,17 +197,6 @@ theme.widget.tasklist.tasktip.max_width = 1200
 
 -- KB layout indicator
 theme.widget.keyboard.icon = theme.path .. "/widget/keyboard.svg"
-
-
--- Individual styles
-------------------------------------------------------------
-theme.individual.microphone_audio = {
-	width   = 26,
-	--dmargin = { 4, 3, 1, 1 },
-	--dash    = { line = { num = 3, height = 5 } },
-	icon    = theme.path .. "/widget/microphone.svg",
-	color   = { icon = theme.color.main, mute = theme.color.icon }
-}
 
 -- Floating widgets
 -----------------------------------------------------------------------------------------------------------------------

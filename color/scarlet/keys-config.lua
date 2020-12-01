@@ -129,30 +129,30 @@ function hotkeys:init(args)
 	 		{ env.mod }, "[", function () awful.tag.incmwfact(-0.05) end,
 	 		{ description = "Decrease master width factor", group = "Layout" }
 	 	},
-	-- 	{
-	-- 		{ env.mod }, "i", function () awful.client.incwfact( 0.05) end,
-	-- 		{ description = "Increase window factor of a client", group = "Layout" }
-	-- 	},
-	-- 	{
-	-- 		{ env.mod }, "k", function () awful.client.incwfact(-0.05) end,
-	-- 		{ description = "Decrease window factor of a client", group = "Layout" }
-	-- 	},
-	-- 	{
-	-- 		{ env.mod, }, "+", function () awful.tag.incnmaster( 1, nil, true) end,
-	-- 		{ description = "Increase the number of master clients", group = "Layout" }
-	-- 	},
-	-- 	{
-	-- 		{ env.mod }, "-", function () awful.tag.incnmaster(-1, nil, true) end,
-	-- 		{ description = "Decrease the number of master clients", group = "Layout" }
-	-- 	},
-	-- 	{
-	-- 		{ env.mod, "Control" }, "+", function () awful.tag.incncol( 1, nil, true) end,
-	-- 		{ description = "Increase the number of columns", group = "Layout" }
-	-- 	},
-	-- 	{
-	-- 		{ env.mod, "Control" }, "-", function () awful.tag.incncol(-1, nil, true) end,
-	-- 		{ description = "Decrease the number of columns", group = "Layout" }
-	-- 	},
+--		{
+--			{ env.mod }, "i", function () awful.client.incwfact( 0.05) end,
+--			{ description = "Increase window factor of a client", group = "Layout" }
+--		},
+--		{
+--			{ env.mod }, "k", function () awful.client.incwfact(-0.05) end,
+--			{ description = "Decrease window factor of a client", group = "Layout" }
+--		},
+--		{
+--			{ env.mod, }, "+", function () awful.tag.incnmaster( 1, nil, true) end,
+--			{ description = "Increase the number of master clients", group = "Layout" }
+--		},
+--		{
+--			{ env.mod }, "-", function () awful.tag.incnmaster(-1, nil, true) end,
+--			{ description = "Decrease the number of master clients", group = "Layout" }
+--		},
+--		{
+--			{ env.mod, "Control" }, "+", function () awful.tag.incncol( 1, nil, true) end,
+--			{ description = "Increase the number of columns", group = "Layout" }
+--		},
+--		{
+--			{ env.mod, "Control" }, "-", function () awful.tag.incncol(-1, nil, true) end,
+--			{ description = "Decrease the number of columns", group = "Layout" }
+--		},
 	}
 
   laycom:set_keys(layout_tile, "tile")
@@ -244,23 +244,26 @@ function hotkeys:init(args)
 		{ {}, "k", {}, {} }, -- application kill group
 		{ {}, "n", {}, {} }, -- application minimize group
 		{ {}, "r", {}, {} }, -- application restore group
-    { {}, "a", {}, {} }, -- audio player group
+		{ {}, "a", {}, {} }, -- audio player group
 
 		-- { {}, "g", {}, {} }, -- run or rise group
 		-- { {}, "f", {}, {} }, -- launch application group
 	}
-  --Player controls
-  keyseq[3][5][3] = {
-    {
-      {}, "n", function() redflat.float.player:action("Next") end, { description = "Play next", group = "Player Controls", keyset = { "n" } }
-    },
-    {
-      {}, "p", function() redflat.float.player:action("Previous") end, { description = "Play previous", group = "Player Controls", keyset = { "p" } }
-    },
-    {
-      {}, "l", function() redflat.float.player:action("PlayPause") end, { description = "Pause/Play", group = "Player Controls", keyset = { "l" } }
-    },
-  }  
+	--Player controls
+	keyseq[3][5][3] = {
+		{
+			{}, "n", function() redflat.float.player:action("Next") end,
+			{ description = "Play next", group = "Player Controls", keyset = { "n" } }
+		},
+		{
+			{}, "p", function() redflat.float.player:action("Previous") end,
+			{ description = "Play previous", group = "Player Controls", keyset = { "p" } }
+		},
+		{
+			{}, "l", function() redflat.float.player:action("PlayPause") end,
+			{ description = "Pause/Play", group = "Player Controls", keyset = { "l" } }
+		},
+	}
 
 	-- application kill actions,
 	-- last key in sequence, full description and action is necessary
@@ -342,15 +345,15 @@ function hotkeys:init(args)
 			{ env.mod }, "Return", function() awful.spawn(env.terminal) end,
 			{ description = "Open a terminal", group = "Main" }
 		},
-    {
-      { env.mod }, "]", function () awful.tag.incmwfact( 0.05) end,
-      { description = "Increase master width factor", group = "Layout" }
-    },
-    {
-      { env.mod }, "[", function () awful.tag.incmwfact(-0.05) end,
-      { description = "Decrease master width factor", group = "Layout" }
-    },
-  	{
+		{
+			{ env.mod }, "]", function () awful.tag.incmwfact( 0.05) end,
+			{ description = "Increase master width factor", group = "Layout" }
+		},
+		{
+			{ env.mod }, "[", function () awful.tag.incmwfact(-0.05) end,
+			{ description = "Decrease master width factor", group = "Layout" }
+		},
+		{
 			{ env.mod }, "l", focus_switch_byd("right"),
 			{ description = "Go to right client", group = "Client focus" }
 		},
@@ -374,7 +377,6 @@ function hotkeys:init(args)
 			{ env.mod }, "Tab", focus_to_previous,
 			{ description = "Go to previos client", group = "Client focus" }
 		},
-
 		{
 			{ env.mod }, "w", function() mainmenu:show() end,
 			{ description = "Show main menu", group = "Widgets" }
@@ -412,7 +414,6 @@ function hotkeys:init(args)
 			{ env.mod, "Control", "Shift" }, "t", function() redtitle.global_switch() end,
 			{ description = "Switch titlebar view for all clients", group = "Titlebar" }
 		},
-
 		{
 			{ env.mod }, "a", nil, function() appswitcher:show({ filter = current }) end,
 			{ description = "Switch to next with current tag", group = "Application switcher" }
@@ -429,7 +430,6 @@ function hotkeys:init(args)
 			{ env.mod, "Shift" }, "q", nil, function() appswitcher:show({ filter = allscr, reverse = true }) end,
 			{ description = "Switch to previous through all tags", group = "Application switcher" }
 		},
-
 		{
 			{ env.mod }, "Escape", awful.tag.history.restore,
 			{ description = "Go previos tag", group = "Tag navigation" }
@@ -455,7 +455,7 @@ function hotkeys:init(args)
 			{ env.mod }, "Down", function() awful.layout.inc(-1) end,
 			{ description = "Select previous layout", group = "Layouts" }
 		},
-    {
+		{
 			{}, "XF86AudioRaiseVolume", volume_raise,
 			{ description = "Increase volume", group = "Volume control" }
 		},
@@ -487,7 +487,6 @@ function hotkeys:init(args)
 			{ env.mod }, ".", function() redflat.float.player:show({x=screen[mouse.screen].workarea.width, y=0}) end,
 			{ description = "Show/hide widget", group = "Audio player" }
 		},
-	
 	}
 
 	-- Client keys
@@ -501,9 +500,10 @@ function hotkeys:init(args)
 			{ env.mod }, "F4", function(c) c:kill() end,
 			{ description = "Close", group = "Client keys" }
 		},
-    {
-      { env.mod, "Shift" }, "c", function(c) c:kill() end, { description = "Close client", group = "Client keys" }
-    },
+		{
+			{ env.mod, "Shift" }, "c", function(c) c:kill() end,
+			{ description = "Close client", group = "Client keys" }
+		},
 		{
 			{ env.mod, "Control" }, "f", awful.client.floating.toggle,
 			{ description = "Toggle floating", group = "Client keys" }
@@ -516,19 +516,17 @@ function hotkeys:init(args)
 			{ env.mod }, "n", function(c) c.minimized = true end,
 			{ description = "Minimize", group = "Client keys" }
 		},
-    {
-      { env.mod, "Control" }, "n", 
-      function() 
-        local c = awful.client.restore()
-        -- Focus restored client
-        if c then
-            c:emit_signal(
-              "request::activate", "key.unminimize", {raise = true}
-            )
-        end
-      end,
-      { description = "Restore minimized", group = "client" }
-    },
+		{
+			{ env.mod, "Control" }, "n", 
+				function() 
+					local c = awful.client.restore()
+					-- Focus restored client
+					if c then
+						c:emit_signal("request::activate", "key.unminimize", { raise = true })
+					end
+				end,
+			{ description = "Restore minimized", group = "client" }
+		},
 		{
 			{ env.mod }, "m", function(c) c.maximized = not c.maximized; c:raise() end,
 			{ description = "Maximize", group = "Client keys" }

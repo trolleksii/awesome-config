@@ -24,7 +24,7 @@ rules.floating_any = {
 	instance = { "DTA", "copyq", },
 	class = {
 		"Arandr", "Gpick", "Kruler", "MessageWin", "Sxiv", "Wpa_gui", "pinentry", "veromix",
-		"xtightvncviewer", "Nemo", "Galculator" 
+		"xtightvncviewer", "Nemo", "Galculator", "Klavaro"
 	},
 	name = { "Event Tester", },
 	role = { "AlarmWindow", "pop-up", }

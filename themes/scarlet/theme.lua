@@ -35,33 +35,20 @@ theme:update()
 
 -- Desktop widgets placement
 --------------------------------------------------------------------------------
---[[theme.desktop.grid = {
-	width  = { 440, 440 },
-	height = { 100, 100, 100, 66, 50 },
-	edge   = { width = { 1180, 1180 }, height = { 520, 100 } }
-}
-
-theme.desktop.places = {
-	cpumem   = { 1, 1 },
-  thermal  = { 1, 2 },
-  fan      = { 1, 3 },
-  netspeed = { 2, 1 },
-  ssdspeed = { 2, 2 },
-	disks    = { 2, 3 },
-}]]--
 theme.desktop.grid = {
 	width  = { 440 },
-	height = { 100, 100, 100, 100, 100 },
-	edge   = { width = { 50 }, height = { 100, 100, 100, 100, 100 } }
+	height = { 100, 100, 100, 100, 100, 100, 50 },
+	edge   = { width = { 50 }, height = { 150, 50, 50, 50, 50, 50 } }
 }
 
 theme.desktop.places = {
 	cpumem   = { 1, 1 },
   thermal  = { 1, 2 },
   fan      = { 1, 3 },
-  netspeed = { 1, 4 },
-  ssdspeed = { 1, 5 },
-	disks    = { 1, 6 }
+  transm   = { 1, 4 },
+  netspeed = { 1, 5 },
+  ssdspeed = { 1, 6 },
+	disks    = { 1, 7 },
 }
 
 
@@ -192,12 +179,12 @@ theme.individual.desktop.multiline.vnstat = {
 -- individual margins for panel widgets
 ------------------------------------------------------------
 theme.widget.wrapper = {
-	layoutbox   = { 12, 9, 6, 6 },
+	layoutbox   = { 10, 10, 6, 6 },
 	textclock   = { 10, 10, 0, 0 },
 	volume      = { 4, 9, 3, 3 },
 	keyboard    = { 9, 9, 3, 3 },
 	tray        = { 8, 8, 7, 7 },
-	cpu         = { 9, 3, 7, 7 },
+	cpu         = { 2, 2, 7, 7 },
 	ram         = { 2, 2, 7, 7 },
 	network     = { 4, 4, 7, 7 },
 	taglist     = { 4, 4, 5, 4 },
@@ -206,6 +193,7 @@ theme.widget.wrapper = {
 
 -- Various widgets style tuning
 ------------------------------------------------------------
+theme.widget.minitray.set_position = false
 
 -- Audio
 theme.gauge.audio.blue.dash.plain = true

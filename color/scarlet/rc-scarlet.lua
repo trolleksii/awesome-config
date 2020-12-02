@@ -28,7 +28,7 @@ require("colorless.ercheck-config") -- load file with error handling
 -- Setup theme and environment vars
 -----------------------------------------------------------------------------------------------------------------------
 local env = require("color.scarlet.env-config") -- load file with environment
-env:init({ theme = "scarlet", desktop_autohide = false, set_center = true })
+env:init({ player = "DeaDBeeF" })
 
 
 -- Layouts setup
@@ -80,7 +80,7 @@ taglist.buttons = awful.util.table.join(
 --------------------------------------------------------------------------------
 local textclock = {}
 textclock.widget = redflat.widget.textclock({ timeformat = "%H:%M", dateformat = "%b  %d  %a" })
---textclock.widget.wibox.x = 0
+
 textclock.buttons = awful.util.table.join(
 	awful.button({}, 1, function() redflat.float.calendar:show() end)
 )

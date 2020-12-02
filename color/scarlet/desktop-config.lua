@@ -81,7 +81,7 @@ function desktop:init(args)
 	transm.args = {
 		topbars    = { num = 12, maxm = 100 },
 		lines      = { { maxm = 6*1024 }, { maxm = 6*1024 } },
-		meter      = { async = system.transmission.info, args = { speed_only = true } },
+		meter      = { async = system.transmission.info, args = { command = "transmission-remote 192.168.0.5 -l", speed_only = true } },
 		timeout    = 10,
 	}
 

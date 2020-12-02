@@ -201,6 +201,9 @@ theme.widget.keyboard.icon = theme.path .. "/widget/keyboard.svg"
 -- Floating widgets
 -----------------------------------------------------------------------------------------------------------------------
 
+-- Calendar width
+theme.float.calendar.geometry.width = 400
+
 -- Titlebar helper
 theme.float.bartip.names = { "Mini", "Compact", "Full" }
 

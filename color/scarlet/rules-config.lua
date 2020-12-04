@@ -55,12 +55,18 @@ function rules:init(args)
 			rule_any   = { type = { "normal", "dialog" }},
 			properties = { titlebars_enabled = true }
 		},
-    { rule = { class = "firefox" },
+    { 
+      rule = { class = "firefox" },
       properties = { tag = "Web", switchtotag = true } 
     },
-    { rule_any = { class = { "deadbeef", "vlc", "gpicview", "obs", "Shotcut" } },
+    { 
+      rule_any = { class = { "vlc", "gpicview", "obs", "Shotcut" } },
       properties = { tag = "Media", switchtotag = true }
     },
+    {
+      rule = { class = "Deadbeef" },
+      properties = { tag = "Media", switchtotag = false, floating = true }
+    }
 	}
 
 

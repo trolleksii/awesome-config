@@ -175,6 +175,7 @@ theme.widget.wrapper = {
 	ram         = { 2, 2, 7, 7 },
 	network     = { 4, 4, 7, 7 },
 	taglist     = { 4, 4, 5, 4 },
+  pomodoro    = { 4, 4, 7, 7 },
 	tasklist    = { 10, 0, 0, 0 }, -- centering tasklist widget
 }
 

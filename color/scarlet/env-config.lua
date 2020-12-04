@@ -38,7 +38,7 @@ function env:init(args)
 	self.color_border_focus = args.color_border_focus or false
 	self.set_slave = args.set_slave == nil and true or false
 	self.desktop_autohide = args.desktop_autohide or false
-	--self.set_center = args.set_center or false
+	self.set_center = args.set_center or false
 
 	-- theme setup
 	beautiful.init(env.themedir .. "/theme.lua")

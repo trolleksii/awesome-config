@@ -169,6 +169,11 @@ sysmon.buttons.ram = awful.util.table.join(
   awful.button({ }, 1, function() redflat.float.top:show("mem") end)
 )
 
+-- Pomodoro widget
+local pomodoro = require("pomodoro")
+
+pomodoro.init()
+
 -- Screen setup
 -----------------------------------------------------------------------------------------------------------------------
 awful.screen.connect_for_each_screen(
@@ -213,6 +218,8 @@ awful.screen.connect_for_each_screen(
 				separator,
 				env.wrapper(kbindicator.widget, "keyboard", kbindicator.buttons),
 				separator,
+        pomodoro.icon_widget,
+        separator,
 				env.wrapper(sysmon.widget.network, "network"),
 				separator,
         env.wrapper(sysmon.widget.cpu, "cpu", sysmon.buttons.cpu),

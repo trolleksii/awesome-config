@@ -22,7 +22,7 @@ function menu:init(args)
 	local env = args.env or {} -- fix this?
 	local separator = args.separator or { widget = redflat.gauge.separator.horizontal() }
 	local theme = args.theme or { auto_hotkey = true }
-	local icon_style = args.icon_style or { custom_only = true, scalable_only = true }
+	local icon_style = args.icon_style or { custom_only = false, scalable_only = false, theme = '/usr/share/icons/Numix' }
 
 	-- theme vars
 	local default_icon = redflat.util.base.placeholder()
@@ -44,47 +44,47 @@ function menu:init(args)
 	-- Awesome submenu
 	------------------------------------------------------------
 	local awesomemenu = {
-		{ "Restart",         awesome.restart,                 micon("gnome-session-reboot") },
+		{ "Restart",         awesome.restart,                 micon("system-reboot") },
 		separator,
-		{ "Awesome config",  env.fm .. " .config/awesome",        micon("folder-bookmarks") },
-		{ "Awesome lib",     env.fm .. " /usr/share/awesome/lib", micon("folder-bookmarks") }
+		{ "Awesome config",  env.fm .. " .config/awesome",        micon("folder") },
+		{ "Awesome lib",     env.fm .. " /usr/share/awesome/lib", micon("folder") }
 	}
 
 	-- Places submenu
 	------------------------------------------------------------
 	local placesmenu = {
-		{ "Home",       env.fm,                     micon("folder-home")      },
-		{ "Downloads",  env.fm .. " Downloads",     micon("folder-download")  },
+		{ "Home",       env.fm,                     micon("user-home") },
+		{ "Downloads",  env.fm .. " Downloads",     micon("folder-download") },
 		separator,
-		{ "Music",      env.fm .. " /mnt/Music",    micon("folder-bookmarks") },
-		{ "Torrents",   env.fm .. " /mnt/Torrents", micon("folder-bookmarks") },
+		{ "Music",      env.fm .. " /mnt/Music",    micon("orange-folder-music") },
+		{ "Torrents",   env.fm .. " /mnt/Torrents", micon("orange-folder-hdd") },
 	}
 
 	-- Exit submenu
 	------------------------------------------------------------
 	local exitmenu = {
-		{ "Reboot",          "reboot",                    micon("gnome-session-reboot")  },
-		{ "Shutdown",        "shutdown now",              micon("system-shutdown")       },
+		{ "Reboot",          "reboot",                    micon("system-reboot") },
+		{ "Shutdown",        "shutdown now",              micon("gnome-shutdown") },
 		separator,
-		{ "Switch user",     "dm-tool switch-to-greeter", micon("gnome-session-switch")  },
-		{ "Suspend",         "systemctl suspend" ,        micon("gnome-session-suspend") },
-		{ "Log out",         awesome.quit,                micon("exit")                  },
+		--{ "Switch user",     "dm-tool switch-to-greeter", micon("gnome-session-switch") },
+		--{ "Suspend",         "systemctl suspend" ,        micon("gnome-session-suspend") },
+		{ "Log out",         awesome.quit,                micon("gnome-session-logout") },
 	}
 
 	-- Main menu
 	------------------------------------------------------------
 	self.mainmenu = redflat.menu({ theme = theme,
 		items = {
-			{ "Awesome",       awesomemenu, micon("awesome")                },
-			{ "Applications",  appmenu,     micon("distributor-logo")       },
-			{ "Places",        placesmenu,  micon("folder_home"), key = "c" },
+			{ "Awesome",      awesomemenu, micon("awesome") },
+			{ "Applications", appmenu,     micon("archlinux-logo") },
+			{ "Places",       placesmenu,  micon("folder"), key = "c" },
 			separator,
-			{ "Terminal",      env.terminal, micon("terminal")              },
-			{ "Browser",       env.browser,  micon("firefox")               },
-			{ "Player",        env.player,   micon("deadbeef")              },
-			{ "Ranger",        ranger_comm,  micon("folder"), key = "r"     },
+			{ "Terminal",     env.terminal, micon("Alacritty") },
+			{ "Browser",      env.browser,  micon("firefox") },
+			{ "Player",       string.lower(env.player), micon("deadbeef") },
+			{ "Ranger",       ranger_comm,  micon("utilities-terminal"), key = "r" },
 			separator,
-			{ "Exit",          exitmenu,     micon("exit")                  },
+			{ "Exit",         exitmenu,     micon("gnome-shutdown") },
 		}
 	})
 

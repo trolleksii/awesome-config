@@ -158,13 +158,13 @@ sysmon.widget.cpu = redflat.widget.sysmon(
 sysmon.buttons.cpu = awful.util.table.join(
   awful.button({ }, 1, function() redflat.float.top:show("cpu") end)
 )
- 
+
 -- RAM usage
 sysmon.widget.ram = redflat.widget.sysmon(
   { func = redflat.system.pformatted.mem(70) },
   { timeout = 10, widget = redflat.gauge.monitor.dash }
 )
- 
+
 sysmon.buttons.ram = awful.util.table.join(
   awful.button({ }, 1, function() redflat.float.top:show("mem") end)
 )

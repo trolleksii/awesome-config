@@ -60,6 +60,14 @@ function menu:init(args)
 		{ "Torrents",   env.fm .. " /mnt/Torrents", micon("orange-folder-hdd") },
 	}
 
+	-- Places submenu
+	------------------------------------------------------------
+	local mediamenu = {
+		{ "OBS", "obs", micon("com.obsproject.Studio"), key = "o" },
+		{ "Shotcut", "shotcut", "/opt/Shotcut.app/share/icons/hicolor/128x128/apps/org.shotcut.Shotcut.png", key = "s" },
+		{ "Player", string.lower(env.player), micon("deadbeef"), key = "p" },
+	}
+
 	-- Exit submenu
 	------------------------------------------------------------
 	local exitmenu = {
@@ -75,14 +83,17 @@ function menu:init(args)
 	------------------------------------------------------------
 	self.mainmenu = redflat.menu({ theme = theme,
 		items = {
-			{ "Awesome",      awesomemenu, micon("awesome") },
-			{ "Applications", appmenu,     micon("archlinux-logo") },
-			{ "Places",       placesmenu,  micon("folder"), key = "c" },
+			{ "Awesome",		awesomemenu, micon("awesome") },
+			{ "Applications",	appmenu,     micon("archlinux-logo") },
+			{ "Places",			placesmenu,  micon("folder"), key = "c" },
+			{ "Media",			mediamenu,   "/usr/share/icons/ePapirus/24x24/categories/acestream.svg", key = "m" },
 			separator,
-			{ "Terminal",     env.terminal, micon("Alacritty") },
-			{ "Browser",      env.browser,  micon("firefox") },
-			{ "Player",       string.lower(env.player), micon("deadbeef") },
-			{ "Ranger",       ranger_comm,  micon("utilities-terminal"), key = "r" },
+			{ "Terminal",		env.terminal, micon("Alacritty") },
+			{ "VS Code",		"code",       micon("visual-studio-code") },
+			{ "Discord",		"/opt/Discord/Discord", "/opt/Discord/discord.png" },
+			{ "Chrome",			"google-chrome-stable",  micon("google-chrome") },
+			{ "Firefox",		env.browser,  micon("firefox") },
+			{ "Ranger",			ranger_comm,  micon("utilities-terminal"), key = "r" },
 			separator,
 			{ "Exit",         exitmenu,     micon("gnome-shutdown") },
 		}

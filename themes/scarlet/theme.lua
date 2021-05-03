@@ -24,7 +24,8 @@ theme.panel_height = 38 -- panel height
 theme.wallpaper    = theme.path .. "/wallpaper/custom.png"
 theme.desktopbg    = theme.path .. "/wallpaper/transparent.png"
 theme.border_width = 0
-theme.useless_gap  = 5
+theme.useless_gap  = 0
+theme.useless_gap_mod = 5
 -- Setup parent theme settings
 --------------------------------------------------------------------------------
 theme:update()
@@ -43,11 +44,11 @@ theme.desktop.grid = {
 
 theme.desktop.places = {
 	cpumem   = { 1, 1 },
-  thermal  = { 1, 2 },
-  fan      = { 1, 3 },
-  transm   = { 1, 4 },
-  netspeed = { 1, 5 },
-  ssdspeed = { 1, 6 },
+	thermal  = { 1, 2 },
+	fan      = { 1, 3 },
+	transm   = { 1, 4 },
+	netspeed = { 1, 5 },
+	ssdspeed = { 1, 6 },
 	disks    = { 1, 7 },
 }
 
@@ -93,7 +94,7 @@ theme.individual.desktop.speedmeter.drive = {
 -- Multimeter (base widget)
 theme.desktop.multimeter.upbar          = { width = 32, chunk = { num = 8, line = 4 }, shape = "plain" }
 theme.desktop.multimeter.lines.show     = { label = false, tooltip = true, text = false }
-theme.desktop.multimeter.icon.full      = true 
+theme.desktop.multimeter.icon.full      = true
 theme.desktop.multimeter.icon.margin    = { 0, 8, 0, 0 }
 theme.desktop.multimeter.height.upright = 66
 theme.desktop.multimeter.height.lines   = 20
@@ -175,7 +176,7 @@ theme.widget.wrapper = {
 	ram         = { 2, 2, 7, 7 },
 	network     = { 4, 4, 7, 7 },
 	taglist     = { 4, 4, 5, 4 },
-  pomodoro    = { 4, 4, 7, 7 },
+	pomodoro    = { 4, 4, 7, 7 },
 	tasklist    = { 10, 0, 0, 0 }, -- centering tasklist widget
 }
 

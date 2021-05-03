@@ -72,7 +72,8 @@ function titlebar:init()
 	local style = {}
 
 	-- titlebar schemes
-	style.base    = redutil.table.merge(redutil.table.check(beautiful, "titlebar.base") or {}, { size = 8 })
+	style.base    = redutil.table.merge(redutil.table.check(beautiful, "titlebar.base") or {}, { size = 0 })
+	style.mini    = redutil.table.merge(style.base, { size = 8 })
 	style.compact = redutil.table.merge(style.base, { size = 16 })
 	style.iconic  = redutil.table.merge(style.base, { size = 24 })
 
@@ -206,6 +207,7 @@ function titlebar:init()
 
 			-- Set both models to titlebar
 			redtitle.add_layout(c, nil, base, style.base.size)
+			redtitle.add_layout(c, nil, base, style.mini.size)
 			redtitle.add_layout(c, nil, compact, style.compact.size)
 			redtitle.add_layout(c, nil, iconic, style.iconic.size)
 			redtitle.switch(c, nil, redtitle._index)

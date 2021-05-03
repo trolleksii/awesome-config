@@ -4,7 +4,7 @@
 
 -- Grab environment
 local awful = require("awful")
-
+local beautiful = require("beautiful")
 local redflat = require("redflat")
 
 -- Initialize tables and vars for module
@@ -102,13 +102,9 @@ function hotkeys:init(args)
 	args = args or {}
 	local env = args.env
 	local mainmenu = args.menu
-  local volume = args.volume
+	local volume = args.volume
 
-	self.mouse.root = (awful.util.table.join(
-		awful.button({ }, 3, function () mainmenu:toggle() end),
-		awful.button({ }, 4, awful.tag.viewnext),
-		awful.button({ }, 5, awful.tag.viewprev)
-	))
+	self.mouse.root = awful.button({ }, 3, function () mainmenu:toggle() end)
 
 	-- volume functions
 	local volume_raise = function() volume:change_volume({ show_notify = true }) end
@@ -121,14 +117,6 @@ function hotkeys:init(args)
 	-- this is exaple for layouts hotkeys setup, see other color configs for more
 
 	 local layout_tile = {
-	 	{
-	 		{ env.mod }, "]", function () awful.tag.incmwfact( 0.05) end,
-	 		{ description = "Increase master width factor", group = "Layout" }
-	 	},
-	 	{
-	 		{ env.mod }, "[", function () awful.tag.incmwfact(-0.05) end,
-	 		{ description = "Decrease master width factor", group = "Layout" }
-	 	},
 --		{
 --			{ env.mod }, "i", function () awful.client.incwfact( 0.05) end,
 --			{ description = "Increase window factor of a client", group = "Layout" }
@@ -155,7 +143,7 @@ function hotkeys:init(args)
 --		},
 	}
 
-  laycom:set_keys(layout_tile, "tile")
+	laycom:set_keys(layout_tile, "tile")
 
 	-- Keys for widgets
 	--------------------------------------------------------------------------------
@@ -226,102 +214,6 @@ function hotkeys:init(args)
 	appswitcher:set_keys(awful.util.table.join(appswitcher.keys.action, appswitcher_keys_action), "action")
 
 
-	-- Emacs like key sequences
-	--------------------------------------------------------------------------------
-
-	-- initial key
-	-- first prefix key, no description needed here
-	local keyseq = { { env.mod }, "c", {}, {} }
-
-	-- second sequence keys
-	keyseq[3] = {
-		-- second and last key in sequence, full description and action is necessary
-		{
-			{}, "p", function () toggle_placement(env) end,
-			{ description = "Switch master/slave window placement", group = "Clients managment" }
-		},
-		-- not last key in sequence, no description needed here
-		{ {}, "k", {}, {} }, -- application kill group
-		{ {}, "n", {}, {} }, -- application minimize group
-		{ {}, "r", {}, {} }, -- application restore group
-		{ {}, "a", {}, {} }, -- audio player group
-
-		-- { {}, "g", {}, {} }, -- run or rise group
-		-- { {}, "f", {}, {} }, -- launch application group
-	}
-	--Player controls
-	keyseq[3][5][3] = {
-		{
-			{}, "n", function() redflat.float.player:action("Next") end,
-			{ description = "Play next", group = "Player Controls", keyset = { "n" } }
-		},
-		{
-			{}, "p", function() redflat.float.player:action("Previous") end,
-			{ description = "Play previous", group = "Player Controls", keyset = { "p" } }
-		},
-		{
-			{}, "l", function() redflat.float.player:action("PlayPause") end,
-			{ description = "Pause/Play", group = "Player Controls", keyset = { "l" } }
-		},
-	}
-
-	-- application kill actions,
-	-- last key in sequence, full description and action is necessary
-	keyseq[3][2][3] = {
-		{
-			{}, "f", function() if client.focus then client.focus:kill() end end,
-			{ description = "Kill focused client", group = "Kill application", keyset = { "f" } }
-		},
-		{
-			{}, "a", kill_all,
-			{ description = "Kill all clients with current tag", group = "Kill application", keyset = { "a" } }
-		},
-	}
-
-	-- application minimize actions,
-	-- last key in sequence, full description and action is necessary
-	keyseq[3][3][3] = {
-		{
-			{}, "f", function() if client.focus then client.focus.minimized = true end end,
-			{ description = "Minimized focused client", group = "Clients managment", keyset = { "f" } }
-		},
-		{
-			{}, "a", minimize_all,
-			{ description = "Minimized all clients with current tag", group = "Clients managment", keyset = { "a" } }
-		},
-		{
-			{}, "e", minimize_all_except_focused,
-			{ description = "Minimized all clients except focused", group = "Clients managment", keyset = { "e" } }
-		},
-	}
-
-	-- application restore actions,
-	-- last key in sequence, full description and action is necessary
-	keyseq[3][4][3] = {
-		{
-			{}, "f", restore_client,
-			{ description = "Restore minimized client", group = "Clients managment", keyset = { "f" } }
-		},
-		{
-			{}, "a", restore_all,
-			{ description = "Restore all clients with current tag", group = "Clients managment", keyset = { "a" } }
-		},
-	}
-
-	-- quick launch key sequence actions, auto fill up last sequence key
-	-- for i = 1, 9 do
-	-- 	local ik = tostring(i)
-	-- 	table.insert(keyseq[3][5][3], {
-	-- 		{}, ik, function() qlaunch:run_or_raise(ik) end,
-	-- 		{ description = "Run or rise application №" .. ik, group = "Run or Rise", keyset = { ik } }
-	-- 	})
-	-- 	table.insert(keyseq[3][6][3], {
-	-- 		{}, ik, function() qlaunch:run_or_raise(ik, true) end,
-	-- 		{ description = "Launch application №".. ik, group = "Quick Launch", keyset = { ik } }
-	-- 	})
-	-- end
-
-
 	-- Global keys
 	--------------------------------------------------------------------------------
 	self.raw.root = {
@@ -353,6 +245,20 @@ function hotkeys:init(args)
 			{ env.mod }, "[", function () awful.tag.incmwfact(-0.05) end,
 			{ description = "Decrease master width factor", group = "Layout" }
 		},
+		{
+			{ env.mod }, "\\", function()
+				local scr = awful.screen.focused()
+				local tag = scr.selected_tag
+				local gap = 5
+				if tag.gap == gap then
+					tag.gap = 0
+				else
+					tag.gap = gap
+				end
+				awful.layout.arrange(scr)
+			end,
+		{ description = "Toggle useless gap", group = "layout" }
+	},
 		{
 			{ env.mod }, "l", focus_switch_byd("right"),
 			{ description = "Go to right client", group = "Client focus" }
@@ -497,11 +403,11 @@ function hotkeys:init(args)
 			{ description = "Toggle fullscreen", group = "Client keys" }
 		},
 		{
-			{ env.mod }, "F4", function(c) c:kill() end,
+			{ env.mod, "Alt" }, "F4", function(c) c:kill() end,
 			{ description = "Close", group = "Client keys" }
 		},
 		{
-			{ env.mod, "Shift" }, "c", function(c) c:kill() end,
+			{ env.mod, "Shift" }, "x", function(c) c:kill() end,
 			{ description = "Close client", group = "Client keys" }
 		},
 		{
@@ -517,8 +423,8 @@ function hotkeys:init(args)
 			{ description = "Minimize", group = "Client keys" }
 		},
 		{
-			{ env.mod, "Control" }, "n", 
-				function() 
+			{ env.mod, "Control" }, "n",
+				function()
 					local c = awful.client.restore()
 					-- Focus restored client
 					if c then

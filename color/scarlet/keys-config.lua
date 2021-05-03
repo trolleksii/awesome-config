@@ -260,19 +260,19 @@ function hotkeys:init(args)
 		{ description = "Toggle useless gap", group = "layout" }
 	},
 		{
-			{ env.mod }, "l", focus_switch_byd("right"),
+			{ env.mod }, "Right", focus_switch_byd("right"),
 			{ description = "Go to right client", group = "Client focus" }
 		},
 		{
-			{ env.mod }, "j", focus_switch_byd("left"),
+			{ env.mod }, "Left", focus_switch_byd("left"),
 			{ description = "Go to left client", group = "Client focus" }
 		},
 		{
-			{ env.mod }, "i", focus_switch_byd("up"),
+			{ env.mod }, "Up", focus_switch_byd("up"),
 			{ description = "Go to upper client", group = "Client focus" }
 		},
 		{
-			{ env.mod }, "k", focus_switch_byd("down"),
+			{ env.mod }, "Down", focus_switch_byd("down"),
 			{ description = "Go to lower client", group = "Client focus" }
 		},
 		{
@@ -341,11 +341,11 @@ function hotkeys:init(args)
 			{ description = "Go previos tag", group = "Tag navigation" }
 		},
 		{
-			{ env.mod }, "Right", awful.tag.viewnext,
+			{ env.mod, "Shift" }, "Right", awful.tag.viewnext,
 			{ description = "View next tag", group = "Tag navigation" }
 		},
 		{
-			{ env.mod }, "Left", awful.tag.viewprev,
+			{ env.mod, "Shift" }, "Left", awful.tag.viewprev,
 			{ description = "View previous tag", group = "Tag navigation" }
 		},
 
@@ -354,11 +354,11 @@ function hotkeys:init(args)
 			{ description = "Show layout menu", group = "Layouts" }
 		},
 		{
-			{ env.mod }, "Up", function() awful.layout.inc(1) end,
+			{ env.mod, "Shift" }, "Up", function() awful.layout.inc(1) end,
 			{ description = "Select next layout", group = "Layouts" }
 		},
 		{
-			{ env.mod }, "Down", function() awful.layout.inc(-1) end,
+			{ env.mod, "Shift" }, "Down", function() awful.layout.inc(-1) end,
 			{ description = "Select previous layout", group = "Layouts" }
 		},
 		{
@@ -401,10 +401,6 @@ function hotkeys:init(args)
 		{
 			{ env.mod }, "f", function(c) c.fullscreen = not c.fullscreen; c:raise() end,
 			{ description = "Toggle fullscreen", group = "Client keys" }
-		},
-		{
-			{ env.mod, "Alt" }, "F4", function(c) c:kill() end,
-			{ description = "Close", group = "Client keys" }
 		},
 		{
 			{ env.mod, "Shift" }, "x", function(c) c:kill() end,
